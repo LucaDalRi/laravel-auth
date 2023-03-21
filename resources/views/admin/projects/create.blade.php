@@ -16,7 +16,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Descrizione</label>
-                    <input type="text" class="form-control" id="description" name="description" required min="5" placeholder="Inserisci la descrizione">
+                    <input type="text" class="form-control" id="description" name="description" required max="4096" min="5" placeholder="Inserisci la descrizione">
                 </div>
                 <p class="text-warning">
                     Lo slug verrà create automaticamente

@@ -32,7 +32,7 @@
                 <td>
                     <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-primary">Dettagli</a>
                     <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning">Aggiorna</a>
-                    <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
+                    <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="d-inline">
                       @csrf
                       @method('DELETE')
                       <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
