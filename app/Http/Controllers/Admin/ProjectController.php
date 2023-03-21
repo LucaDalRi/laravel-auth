@@ -53,7 +53,7 @@ class ProjectController extends Controller
         $singleProject->slug = Str::slug($titolo);
         $singleProject->save();
 
-        return redirect()->route('admin.project.index');
+        return redirect()->route('admin.projects.index');
     }
 
     /**
@@ -94,10 +94,11 @@ class ProjectController extends Controller
         $data = $request->all();
 
         $project->title = $data['title'];
-        $project->descritpion = $data['description'];
-        $project->slug = $data['slug'];
+        $project->description = $data['description'];
+        $project->slug = Str::slug($data['title']);
+        $project->save();
 
-        return redirect()->route('admin.projects.show', $project->id);
+        return redirect()->route('admin.projects.index', $project->id);
     }
 
     /**
@@ -108,6 +109,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project = Project::findOrFail($project->id);
+
+        $project->delete();
+
+        return redirect()->route('admin.projects.index');
     }
 }
