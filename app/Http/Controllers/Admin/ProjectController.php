@@ -43,6 +43,11 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
+        $request->validate([
+            'title' => 'required|max:100|min:3',
+            'description' => 'required|min:5|max:4096',
+        ]);
+
         $data = $request->all();
 
         $titolo = $request->title;
@@ -89,6 +94,12 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
+
+        $request->validate([
+            'title' => 'required|max:100|min:3',
+            'description' => 'required|min:5|max:4096',
+        ]);
+
         $project = Project::findOrFail($project->id);
 
         $data = $request->all();
@@ -107,10 +118,10 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy($id)
     {
-        $project = Project::findOrFail($project->id);
-
+        $project = Project::findOrFail($id);
+        
         $project->delete();
 
         return redirect()->route('admin.projects.index');
