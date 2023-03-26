@@ -25,7 +25,9 @@ class UpdateProjectRequest extends FormRequest
     {
         return [
             'title' => ['string', 'required' ,'max:100', 'min:3'],
-            'description' => ['string', 'required' ,'max:4096', 'min:5']
+            'description' => ['string', 'required' ,'max:4096', 'min:5'],
+            'slug' => ['string'],
+            'image' => ['string']
         ];
     }
 }

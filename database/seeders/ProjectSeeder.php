@@ -28,7 +28,7 @@ class ProjectSeeder extends Seeder
             Project::create([
                 'title' => $title,
                 'description' => $faker->paragraph(),
-                'slug' => Str::slug($title)
+                'slug' => Str::slug($title),
             ]);
         }
     }

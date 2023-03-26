@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateProjectRequest;
 
 
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -50,13 +51,19 @@ class ProjectController extends Controller
 
         $data = $request->all();
 
+        $imgPath = Storage::put('projects', $data['image']);
+
         $titolo = $request->title;
 
         $singleProject = new Project;
         $singleProject->title = $titolo;
         $singleProject->description = $data['description'];
         $singleProject->slug = Str::slug($titolo);
+        if (array_key_exists('image', $data)) {
+            $singleProject->image = $imgPath;
+        }
         $singleProject->save();
+
 
         return redirect()->route('admin.projects.index');
     }

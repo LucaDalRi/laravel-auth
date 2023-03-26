@@ -15,6 +15,12 @@
             <h4>
                 Descrizione: {{ $project->description }}
             </h4>
+            
+            @if ($project->image)
+            <div>
+                <img src="{{ asset('storage/'.$project->image) }}" alt="">
+            </div>
+            @endif
 
             <a href="route('admin.projects.create')" class="btn btn-success">
                 Aggiungi progetto
